@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 
 const stats = [
-  { number: '4', label: 'Projects' },
-  { number: '1', label: 'Degree' },
-  { number: '3', label: 'Certifications' },
+  { number: '6+', label: 'Projects' },
+  { number: '3', label: 'Semesters' },
+  { number: '4+', label: 'Certificates' },
 ];
 
 const paragraphs = [
@@ -13,7 +13,7 @@ const paragraphs = [
   },
   {
     label: 'WHAT I BUILD',
-    text: 'My work includes Data Agent for automated insight generation, FileFlow for privacy-first file processing, ThinkRing for campus services, and data analysis projects built with Python, SQL, Tableau, and Supabase.',
+    text: 'My work includes VibeCoding Suite and FileFlow, with a focus on privacy-first browser tools and modern web technologies.',
   },
   {
     label: 'WHAT I CARE ABOUT',

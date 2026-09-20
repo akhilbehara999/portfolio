@@ -27,24 +27,11 @@ import { SectionScreen } from './components/SectionScreen';
 import { ContactScreen } from './components/ContactScreen';
 import { WorkspaceScreen, type SectionId } from './components/WorkspaceScreen';
 import { TabletLayout } from './tablet/TabletLayout';
-import { DesktopLayout } from './desktop/DesktopLayout';
+import DesktopLayout from './desktop/DesktopLayout';
+import { journeyData, projectChartData } from './data/chartData';
 
 type Screen = 'home' | 'workspace' | 'contact' | 'section';
 type NavScreen = Exclude<Screen, 'section'>;
-
-const journeyData = [
-  { label: 'Year 1', value: 60 },
-  { label: 'Year 2', value: 72 },
-  { label: 'Year 3', value: 85 },
-  { label: 'Year 4', value: 95 },
-];
-
-const projectData = [
-  { name: 'Data Agent', value: 4 },
-  { name: 'FileFlow', value: 5 },
-  { name: 'ThinkRing', value: 4 },
-  { name: 'Data Jobs', value: 5 },
-];
 
 const skillData = [
   { name: 'Programming', value: 30, color: '#AA2222' },
@@ -54,7 +41,7 @@ const skillData = [
   { name: 'Tools', value: 8, color: '#F0A060' },
 ];
 
-type Theme = 'light' | 'dark';
+export type Theme = 'light' | 'dark';
 
 function getInitialTheme(): Theme {
   try {
@@ -92,7 +79,7 @@ function ChartTooltip({
 }) {
   if (!active || !payload?.length) return null;
   const chartLabel = mode === 'pie' ? payload[0].name : label;
-  const chartValue = mode === 'pie' ? `${payload[0].value}%` : `Progress ↑ ${payload[0].value}`;
+  const chartValue = mode === 'pie' ? `${payload[0].value}%` : `SGPA ${payload[0].value}`;
 
   return (
     <div className="chart-tooltip" data-testid="chart-tooltip">
@@ -127,9 +114,9 @@ function JourneyCard() {
                 interval={0}
                 padding={{ left: 10, right: 10 }}
                 tick={{ fill: '#9A9A9A', fontSize: 9 }}
-                tickFormatter={(value: string) => value.replace('Year ', 'Y')}
+                tickFormatter={(value: string) => value}
               />
-              <YAxis hide domain={[40, 100]} />
+              <YAxis hide domain={[6.5, 9]} />
               <Tooltip content={<ChartTooltip mode="line" />} cursor={{ stroke: '#E8E2DC' }} />
               <Line
                 type="monotone"
@@ -138,24 +125,26 @@ function JourneyCard() {
                 strokeWidth={2.5}
                 dot={{ r: 5, fill: '#AA2222', stroke: '#AA2222' }}
                 activeDot={{ r: 6, fill: '#E07020', stroke: '#FFF', strokeWidth: 2 }}
+                connectNulls={false}
+                animationDuration={800}
+              />
+              <Line
+                type="monotone"
+                dataKey="forecast"
+                stroke="#AA2222"
+                strokeWidth={2.5}
+                strokeDasharray="5 5"
+                dot={(props) => <circle key={props.index} cx={props.cx} cy={props.cy} r={5} fill="transparent" stroke="#AA2222" strokeWidth={2} opacity={props.index === 6 ? 1 : 0} />}
+                activeDot={false}
+                connectNulls={false}
                 animationDuration={800}
               />
             </LineChart>
           </ResponsiveContainer>
+          <span className="chart-ongoing-tag">Ongoing</span>
         </div>
         <div className="journey-stats">
-          <div data-testid="stat-start">
-            <span className="stat-label">Started</span>
-            <span className="stat-value">60</span>
-          </div>
-          <div data-testid="stat-current">
-            <span className="stat-label">Current</span>
-            <span className="stat-value">95</span>
-          </div>
-          <div data-testid="stat-growth">
-            <span className="stat-label">Growth</span>
-            <span className="stat-value">+58%</span>
-          </div>
+          <div className="journey-summary" data-testid="journey-summary">6 Semesters Completed · 4th Year Ongoing</div>
         </div>
       </div>
     </motion.section>
@@ -171,25 +160,25 @@ function ProjectsCard() {
       </div>
       <div className="bar-fixed">
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={projectData} layout="vertical" margin={{ top: 4, right: 6, bottom: 8, left: 4 }}>
+          <BarChart data={projectChartData} layout="vertical" margin={{ top: 4, right: 6, bottom: 8, left: 4 }}>
             <XAxis
               type="number"
-              domain={[0, 5]}
-              ticks={[0, 1, 2, 3, 4, 5]}
+              domain={[0, 7]}
+              ticks={[0, 1, 2, 3, 4, 5, 6, 7]}
               axisLine={false}
               tickLine={false}
               tick={{ fill: '#9A9A9A', fontSize: 9 }}
             />
             <YAxis
               type="category"
-              dataKey="name"
+              dataKey="project"
               width={65}
               axisLine={false}
               tickLine={false}
               tick={{ fill: '#5C5C5C', fontSize: 9 }}
             />
             <Tooltip content={<ChartTooltip />} cursor={{ fill: '#F8F5F2' }} />
-            <Bar dataKey="value" fill="#AA2222" radius={[0, 5, 5, 0]} barSize={14} />
+            <Bar dataKey="tech" fill="#AA2222" radius={[0, 5, 5, 0]} barSize={14} />
           </BarChart>
         </ResponsiveContainer>
       </div>
@@ -267,7 +256,7 @@ function SkillsCard() {
   );
 }
 
-function HomeScreen({ onExplore, theme, onToggleTheme }: { onExplore: () => void; theme: Theme; onToggleTheme: () => void }) {
+export function HomeScreen({ onExplore, theme, onToggleTheme }: { onExplore: () => void; theme: Theme; onToggleTheme: () => void }) {
   return (
     <motion.main
       key="home"
@@ -371,13 +360,38 @@ function MobileNav({ screen, onNavigate }: { screen: Screen; onNavigate: (screen
   );
 }
 
-function useViewportClass() {
-  const [viewport, setViewport] = useState<'mobile' | 'tablet' | 'desktop'>('mobile');
+function DesktopComingSoon() {
+  return (
+    <main className="desktop-only coming-screen" data-testid="desktop-coming-soon">
+      <div className="coming-inner">
+        <div className="coming-symbol" aria-hidden="true">A</div>
+        <h1 className="coming-title">Akhil</h1>
+        <p className="coming-copy">Full mobile experience coming to tablet &amp; desktop soon.</p>
+        <div className="coming-rule" aria-hidden="true" />
+      </div>
+    </main>
+  );
+}
+
+type ViewportMode = 'mobile' | 'tablet' | 'desktop';
+
+function useViewportMode(): ViewportMode {
+  const [mode, setMode] = useState<ViewportMode>(() => {
+    if (typeof window === 'undefined') return 'mobile';
+    if (window.innerWidth >= 1025) return 'desktop';
+    if (window.innerWidth >= 769) return 'tablet';
+    return 'mobile';
+  });
 
   useEffect(() => {
     const updateViewport = () => {
-      const width = window.innerWidth;
-      setViewport(width >= 1200 ? 'desktop' : width >= 769 ? 'tablet' : 'mobile');
+      if (window.innerWidth >= 1025) {
+        setMode('desktop');
+      } else if (window.innerWidth >= 769) {
+        setMode('tablet');
+      } else {
+        setMode('mobile');
+      }
     };
 
     updateViewport();
@@ -385,7 +399,7 @@ function useViewportClass() {
     return () => window.removeEventListener('resize', updateViewport);
   }, []);
 
-  return viewport;
+  return mode;
 }
 
 function MobileExperience({ theme, onToggleTheme }: { theme: Theme; onToggleTheme: () => void }) {
@@ -427,7 +441,7 @@ function MobileExperience({ theme, onToggleTheme }: { theme: Theme; onToggleThem
 }
 
 function App() {
-  const viewport = useViewportClass();
+  const viewportMode = useViewportMode();
   const [theme, setTheme] = useState<Theme>(getInitialTheme);
 
   useEffect(() => {
@@ -440,18 +454,10 @@ function App() {
 
   return (
     <>
-      {viewport === 'desktop' ? (
-        <DesktopLayout
-          theme={theme}
-          onToggleTheme={() => setTheme((current) => current === 'light' ? 'dark' : 'light')}
-          homeContent={(onExplore) => <HomeScreen onExplore={onExplore} theme={theme} onToggleTheme={() => setTheme((current) => current === 'light' ? 'dark' : 'light')} />}
-        />
-      ) : viewport === 'tablet' ? (
-        <TabletLayout
-          theme={theme}
-          onToggleTheme={() => setTheme((current) => current === 'light' ? 'dark' : 'light')}
-          homeContent={(onExplore) => <HomeScreen onExplore={onExplore} theme={theme} onToggleTheme={() => setTheme((current) => current === 'light' ? 'dark' : 'light')} />}
-        />
+      {viewportMode === 'desktop' ? (
+        <DesktopLayout theme={theme} onToggleTheme={() => setTheme((current) => current === 'light' ? 'dark' : 'light')} />
+      ) : viewportMode === 'tablet' ? (
+        <TabletLayout theme={theme} onToggleTheme={() => setTheme((current) => current === 'light' ? 'dark' : 'light')} />
       ) : (
         <MobileExperience theme={theme} onToggleTheme={() => setTheme((current) => current === 'light' ? 'dark' : 'light')} />
       )}

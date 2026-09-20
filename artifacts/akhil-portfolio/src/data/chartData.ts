@@ -9,6 +9,7 @@ export const journeyData = [
 ];
 
 export const projectChartData = [
+  { project: 'Thinkring', tech: 7 },
   { project: 'VibeCoding', tech: 6 },
-  { project: 'FileFlow', tech: 6 },
+  { project: 'Data Analyst', tech: 5 },
 ];

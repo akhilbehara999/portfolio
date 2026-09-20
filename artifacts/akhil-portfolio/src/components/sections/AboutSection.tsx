@@ -13,7 +13,7 @@ const paragraphs = [
   },
   {
     label: 'WHAT I BUILD',
-    text: 'My work includes VibeCoding Suite and FileFlow, with a focus on privacy-first browser tools and modern web technologies.',
+    text: 'My six featured projects span privacy-first browser tools, data analytics dashboards, campus systems, language tools, and collaborative hackathon work.',
   },
   {
     label: 'WHAT I CARE ABOUT',

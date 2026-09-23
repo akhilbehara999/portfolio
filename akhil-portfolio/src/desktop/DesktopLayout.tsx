@@ -2,10 +2,11 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 import {
   BriefcaseBusiness,
+  ExternalLink,
+  FileText,
   Github,
   Home,
   Linkedin,
-  ExternalLink,
   Mail,
   Moon,
   Sun,
@@ -152,7 +153,7 @@ export default function DesktopLayout({ theme, onToggleTheme }: DesktopLayoutPro
             <ExternalLink size={12} aria-hidden="true" />
           </a>
           <a href="/Akhil_Behara_Resume.pdf" target="_blank" rel="noopener noreferrer">
-            <ExternalLink size={16} aria-hidden="true" />
+            <FileText size={16} aria-hidden="true" />
             <span>Resume</span>
             <ExternalLink size={12} aria-hidden="true" />
           </a>

@@ -2,6 +2,7 @@
 
 <div align="center">
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-akhil--portfolio--rho.vercel.app-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://akhil-portfolio-rho.vercel.app/)
 [![Vite](https://img.shields.io/badge/Vite-6.4+-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![React](https://img.shields.io/badge/React-18+-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
@@ -11,7 +12,9 @@
 
 **A high-performance, responsive portfolio engineered with adaptive device modes (Mobile Phone Simulator, Tablet Split View, and Desktop Studio), interactive data visualizations, and fluid micro-animations.**
 
-[Explore Projects](#-featured-projects) • [View Experience](#-experience--internships) • [Local Setup](#-getting-started) • [Contact](#-connect-with-me)
+### 🌐 Live Demo: [https://akhil-portfolio-rho.vercel.app/](https://akhil-portfolio-rho.vercel.app/)
+
+[🚀 View Live Demo](https://akhil-portfolio-rho.vercel.app/) • [Explore Projects](#-featured-projects) • [View Experience](#-experience--internships) • [Local Setup](#-getting-started) • [Contact](#-connect-with-me)
 
 </div>
 
@@ -135,8 +138,8 @@ Make sure you have [Node.js](https://nodejs.org/) (v18 or newer) and `npm` insta
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/akhilbehara999/Akhil-Mobile-Portfolio.git
-   cd Akhil-Mobile-Portfolio/akhil-portfolio
+   git clone https://github.com/akhilbehara999/portfolio.git
+   cd portfolio/akhil-portfolio
    ```
 
 2. **Install dependencies:**

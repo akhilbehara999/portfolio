@@ -1,5 +1,10 @@
 export type ProjectStatus = 'Completed' | 'In Progress';
 
+export type ProjectDemoLink = {
+  label: string;
+  url: string;
+};
+
 export type ProjectData = {
   id: string;
   title: string;
@@ -12,7 +17,27 @@ export type ProjectData = {
   demoLabel?: string;
   demo2?: string;
   demo2Label?: string;
+  demo3?: string;
+  demo3Label?: string;
+  demos?: ProjectDemoLink[];
 };
+
+export function getProjectDemoLinks(project: ProjectData): ProjectDemoLink[] {
+  if (project.demos && project.demos.length > 0) {
+    return project.demos;
+  }
+  const links: ProjectDemoLink[] = [];
+  if (project.demo) {
+    links.push({ label: project.demoLabel ?? 'Live Demo', url: project.demo });
+  }
+  if (project.demo2) {
+    links.push({ label: project.demo2Label ?? 'Live Demo 2', url: project.demo2 });
+  }
+  if (project.demo3) {
+    links.push({ label: project.demo3Label ?? 'Live Demo 3', url: project.demo3 });
+  }
+  return links;
+}
 
 export const projectsData: ProjectData[] = [
   {
@@ -46,7 +71,17 @@ export const projectsData: ProjectData[] = [
     longDesc: 'VibeCoding Suite is an elite monorepo housing three serverless browser applications. FileFlow converts audio/video (MP4, WEBM, MP3, WAV, OGG) using FFmpeg WebAssembly, runs OCR via Tesseract.js, parses PDFs and spreadsheets with SheetJS, and exports batch ZIPs — all without uploading files. EmojiCrypt encrypts text with AES-256-GCM and disguises ciphertexts as emoji sequences, numbers, mixed alphabets, or random English words using Crypto-JS. Qrix is an offline-first PWA that scans QR codes with hardware-accelerated Zbar WASM, generates NFC virtual business cards with vCard export, and splits group bills with canvas-based UPI QR codes stored in IndexedDB.',
     tech: ['React 19', 'Next.js 15', 'TypeScript', 'FFmpeg WASM', 'Tailwind CSS', 'Framer Motion'],
     sourceCode: 'https://github.com/akhilbehara999/vibe-codeing',
-    demo: '',
+    demo: 'https://emojicrypt-gamma.vercel.app/',
+    demoLabel: 'EmojiCrypt Demo',
+    demo2: 'https://qrix-three.vercel.app/',
+    demo2Label: 'QRix Demo',
+    demo3: 'https://fileflow-black.vercel.app/',
+    demo3Label: 'FileFlow Demo',
+    demos: [
+      { label: 'EmojiCrypt Demo', url: 'https://emojicrypt-gamma.vercel.app/' },
+      { label: 'QRix Demo', url: 'https://qrix-three.vercel.app/' },
+      { label: 'FileFlow Demo', url: 'https://fileflow-black.vercel.app/' },
+    ],
   },
   {
     id: 'thinkring',

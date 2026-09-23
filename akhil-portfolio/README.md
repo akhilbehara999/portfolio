@@ -57,29 +57,41 @@ This portfolio is an interactive personal showcase designed to break away from t
 
 ## 💼 Featured Projects
 
-### 1. 🛡️ Privacy-First Browser Ad-Blocker
-- **Tech**: TypeScript, WebExtension APIs, Declarative Net Request
-- Client-side declarative content filtering engine delivering zero-latency tracker blocking without collecting user data.
+### 1. ⚡ VibeCoding Suite (Monorepo of 3 Web Tools)
+- **Tech**: React 19, Next.js 15, TypeScript, FFmpeg WASM, Tailwind CSS, Framer Motion
+- A monorepo of 3 privacy-first, 100% client-side serverless browser utility applications:
+  - 🔒 **EmojiCrypt**: [https://emojicrypt-gamma.vercel.app/](https://emojicrypt-gamma.vercel.app/) — Encrypts text with AES-256-GCM and disguises ciphertexts as emoji sequences, numbers, or words using Crypto-JS.
+  - 📱 **QRix**: [https://qrix-three.vercel.app/](https://qrix-three.vercel.app/) — Offline-first PWA that scans QR codes with hardware-accelerated Zbar WASM, generates NFC virtual business cards with vCard export, and splits group bills with canvas-based UPI QR codes stored in IndexedDB.
+  - 🌊 **FileFlow**: [https://fileflow-black.vercel.app/](https://fileflow-black.vercel.app/) — Converts audio/video using FFmpeg WebAssembly, runs OCR via Tesseract.js, parses PDFs and spreadsheets with SheetJS, and exports batch ZIPs — all in-browser without server uploads.
+- **Repository**: [GitHub](https://github.com/akhilbehara999/vibe-codeing)
 
-### 2. 📊 Data Sanitizer & Jobs in Data Analytics
-- **Tech**: Python, Streamlit, Pandas, Scikit-Learn, Statsmodels
-- Interactive data profiling web app with cell-level change audit diffs and statistical salary prediction across 9,400+ listings using regression & ANOVA tests.
+### 2. 📱 FileGym — Local-First Android File Suite
+- **Tech**: Flutter, Dart, Android, Riverpod, GoRouter, Hive
+- Privacy-focused Android file utility suite for converting, resizing, compressing, and stitching files completely offline on-device with zero server dependence.
+- **Repository**: [GitHub](https://github.com/akhilbehara999/FILEGYM)
 
-### 3. 🏫 Smart Campus Hub
-- **Tech**: React, TypeScript, Tailwind CSS, Supabase
-- Centralized academic and campus services dashboard streamlining student notices, timetables, and resource management.
+### 3. 📊 Data Sanitizer & Salary Analytics Dashboard
+- **Tech**: Python, Streamlit, Pandas, Scikit-learn, Plotly, NumPy
+- Interactive data profiling web app with cell-level diffs, audit ZIP export, and statistical salary prediction across ~9,400 job listings with ML regression and ANOVA validation.
+- **Live Demos**:
+  - [Salary Dashboard](https://data-analyst-9xn7xr3jb9qh9talrjmbpb.streamlit.app/)
+  - [Data Sanitizer](https://data-analyst-2sy2qrn76sjkpttm4c6g8r.streamlit.app/)
+- **Repository**: [GitHub](https://github.com/akhilbehara999/data-analyst)
 
-### 4. 🌐 Telugu NLP Translation Engine
-- **Tech**: Python, PyTorch, Hugging Face Transformers, FastAPIs
-- Neural machine translation and linguistic tool tuned for regional Telugu-to-English contextual fidelity.
+### 4. 🏫 Thinkring — Smart Campus Bot
+- **Tech**: HTML5, CSS3, JavaScript, Node.js, Express, MongoDB Atlas, JWT
+- Jarvis-inspired secure multi-module campus web app with AI book summarizer, TTS, trainable chatbot, attendance tracking with CSV/PDF/image processing, and encrypted cloud storage.
+- **Repository**: [GitHub](https://github.com/akhilbehara999/thinkring-project)
 
-### 5. 🤖 CareerFlow AI
-- **Tech**: React, TypeScript, OpenAI API, LangChain
-- Hackathon-winning career support platform deploying specialized agents for resume ATS optimization, mock interview feedback, and contract review.
+### 5. 🌐 GenZ Telugu Translator & Playground
+- **Tech**: Python, React, Vite, TypeScript, Pyodide, VS Code
+- Telugu-inspired programming language and playground translating Gen-Z and Telugu slang keywords into executable Python, featuring an online Pyodide REPL and VS Code extension.
+- **Repository**: [GitHub](https://github.com/akhilbehara999/genz-telugu-)
 
-### 6. 🤝 Collaborative Hackathon Suite
-- **Tech**: React, WebSockets, Tailwind CSS, Node.js
-- Real-time team collaboration platform built for competitive rapid-prototyping hackathon sprints.
+### 6. 🤖 CareerFlow AI (Team 55 Hackathon Project)
+- **Tech**: React, TypeScript, Tailwind CSS, FastAPI, LangChain, Gemini, PostgreSQL
+- GenAI-powered career companion combining specialized agents for resume ATS optimization, interview simulation, employment contract review, and professional document generation.
+- **Repository**: [GitHub](https://github.com/akhilbehara999/TEAM-55)
 
 ---
 

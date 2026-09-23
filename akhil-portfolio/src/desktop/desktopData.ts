@@ -1,9 +1,10 @@
-import { projectsData, type ProjectData } from '../data/projectsData';
+import { projectsData, getProjectDemoLinks, type ProjectData } from '../data/projectsData';
 import type { SectionId } from '../components/WorkspaceScreen';
 
 export type DesktopProject = ProjectData;
 
 export const desktopProjects: DesktopProject[] = projectsData;
+export { getProjectDemoLinks };
 
 export const desktopSectionDescriptions: Record<SectionId, string> = {
   about: 'Background, journey, and focus areas across AI, data science, and engineering.',

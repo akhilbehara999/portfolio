@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { ExternalLink, FolderOpen } from 'lucide-react';
-import { desktopProjects, desktopSectionDescriptions, desktopSkillGroups, type DesktopProject } from './desktopData';
+import { desktopProjects, desktopSectionDescriptions, desktopSkillGroups, getProjectDemoLinks, type DesktopProject } from './desktopData';
 import { workspaceCards, type SectionId } from '../components/WorkspaceScreen';
 
 type DetailPanelContent = 'welcome' | 'section-info' | 'project-detail';
@@ -33,8 +33,18 @@ function ProjectDetail({ project, onBack }: { project: DesktopProject; onBack: (
       <p className="desktop-detail-copy">{project.longDesc}</p>
       <div className="desktop-detail-links">
         {project.sourceCode ? <a className="desktop-detail-link desktop-detail-link-outline" href={project.sourceCode} target="_blank" rel="noreferrer"><span>GitHub</span><ExternalLink size={13} /></a> : null}
-        {project.demo ? <a className="desktop-detail-link desktop-detail-link-filled" href={project.demo} target="_blank" rel="noreferrer"><span>{project.demoLabel ?? 'Live Demo'}</span><ExternalLink size={13} /></a> : null}
-        {project.demo2 ? <a className="desktop-detail-link desktop-detail-link-filled desktop-detail-link-filled-secondary" href={project.demo2} target="_blank" rel="noreferrer"><span>{project.demo2Label ?? 'Live Demo'}</span><ExternalLink size={13} /></a> : null}
+        {getProjectDemoLinks(project).map((demoLink, idx) => (
+          <a
+            key={demoLink.url}
+            className={`desktop-detail-link desktop-detail-link-filled ${idx > 0 ? 'desktop-detail-link-filled-secondary' : ''}`}
+            href={demoLink.url}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span>{demoLink.label}</span>
+            <ExternalLink size={13} />
+          </a>
+        ))}
       </div>
     </motion.div>
   );

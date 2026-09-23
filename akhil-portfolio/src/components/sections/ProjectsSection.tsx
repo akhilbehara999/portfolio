@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ExternalLink, Play } from 'lucide-react';
 import { SiGithub } from 'react-icons/si';
-import { projectsData, type ProjectData, type ProjectStatus } from '../../data/projectsData';
+import { projectsData, getProjectDemoLinks, type ProjectData, type ProjectStatus } from '../../data/projectsData';
 
 function StatusBadge({ status }: { status: ProjectStatus }) {
   return <span className={`project-status project-status-${status === 'Completed' ? 'completed' : 'progress'}`}>{status}</span>;
@@ -128,30 +128,19 @@ function ProjectDetail({ project, onBack }: { project: ProjectData; onBack: () =
             <ExternalLink size={16} strokeWidth={1.8} aria-hidden="true" />
           </motion.a>
         ) : null}
-        {project.demo ? (
+        {getProjectDemoLinks(project).map((demoLink, idx) => (
           <motion.a
-            className="project-link-button project-link-demo"
-            href={project.demo}
+            key={demoLink.url}
+            className={`project-link-button project-link-demo ${idx > 0 ? 'project-link-demo-secondary' : ''}`}
+            href={demoLink.url}
             target="_blank"
             rel="noreferrer"
             whileTap={{ scale: 0.97 }}
           >
-            <span><Play size={18} strokeWidth={1.8} aria-hidden="true" />{project.demoLabel ?? 'Live Demo'}</span>
+            <span><Play size={18} strokeWidth={1.8} aria-hidden="true" />{demoLink.label}</span>
             <ExternalLink size={16} strokeWidth={1.8} aria-hidden="true" />
           </motion.a>
-        ) : null}
-        {project.demo2 ? (
-          <motion.a
-            className="project-link-button project-link-demo project-link-demo-secondary"
-            href={project.demo2}
-            target="_blank"
-            rel="noreferrer"
-            whileTap={{ scale: 0.97 }}
-          >
-            <span><Play size={18} strokeWidth={1.8} aria-hidden="true" />{project.demo2Label ?? 'Live Demo'}</span>
-            <ExternalLink size={16} strokeWidth={1.8} aria-hidden="true" />
-          </motion.a>
-        ) : null}
+        ))}
       </motion.div>
     </motion.div>
   );
